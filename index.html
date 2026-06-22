@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Descubrí Jáchal - Portal Turístico Oficial</title>
+        <link rel="icon" href="Logo_Página.jpeg" type="image/png">
+        <!-- Bootstrap CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+        <style>
+            /* ──────────────────────────────────────
+               VARIABLES & BASE
+            ────────────────────────────────────── */
+            :root {
+                --tierra-oscura:  #4a2c02;
+                --tierra-media:   #8e5d14;
+                --tierra-calida:  #b96504;
+                --dorado-suave:   #ebca7c;
+                --dorado-claro:   #f5e4a8;
+                --acento:         #d1772e;
+                --acento-hover:   #ac5005;
+                --texto-oscuro:   #25180c;
+                --blanco-calido:  #fdf6e3;
+                --radio:          16px;
+                --shadow:         0 4px 18px rgba(74,44,2,.13);
+            }
+
+            *, *::before, *::after { box-sizing: border-box; }
+
+            body {
+                background-color: var(--tierra-media);
+                background-image:
+                    radial-gradient(ellipse at top left, rgba(235,202,124,.18) 0%, transparent 60%),
+                    radial-gradient(ellipse at bottom right, rgba(74,44,2,.25) 0%, transparent 60%);
+                color: var(--texto-oscuro);
+                font-family: 'Montserrat', sans-serif;
+                line-height: 1.75;
+                margin: 0;
+                padding: 0;
+            }
+
+            /* ──────────────────────────────────────
+               NAV
+            ────────────────────────────────────── */
+            nav.navbar {
+                background-color: var(--tierra-oscura);
+                border-bottom: 3px solid var(--tierra-calida);
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+                padding: 0.6rem 1.5rem;
+                box-shadow: 0 2px 12px rgba(0,0,0,.35);
+            }
+
+            .navbar-brand {
+                font-family: 'Playfair Display', serif;
+                font-weight: 700;
+                font-size: 1.3rem;
+                color: var(--dorado-suave) !important;
+                letter-spacing: .5px;
+            }
+
+            .navbar-toggler {
+                border-color: var(--dorado-suave);
+            }
+            .navbar-toggler-icon {
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(235,202,124,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            }
+
+            .nav-link {
+                color: var(--dorado-claro) !important;
+                font-size: .85rem;
+                font-weight: 600;
+                letter-spacing: .8px;
+                text-transform: uppercase;
+                padding: .5rem .9rem !important;
+                border-radius: 8px;
+                transition: background .2s, color .2s;
+            }
+            .nav-link:hover,
+            .nav-link.active {
+                background-color: var(--tierra-calida);
+                color: #fff !important;
+            }
+
+            /* ──────────────────────────────────────
+               HEADER
+            ────────────────────────────────────── */
+            header {
+                text-align: center;
+                padding: 48px 20px 40px;
+                background-color: var(--dorado-suave);
+                border-bottom: 4px solid var(--tierra-calida);
+                position: relative;
+                overflow: hidden;
+            }
+            header::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: repeating-linear-gradient(
+                    135deg,
+                    transparent,
+                    transparent 40px,
+                    rgba(185,101,4,.06) 40px,
+                    rgba(185,101,4,.06) 41px
+                );
+                pointer-events: none;
+            }
+
+            header h1 {
+                font-family: 'Playfair Display', serif;
+                font-weight: 700;
+                color: var(--tierra-oscura);
+                font-size: clamp(2rem, 5vw, 3rem);
+                letter-spacing: -1px;
+                margin: 0 0 10px;
+                position: relative;
+            }
+            header p {
+                color: var(--tierra-oscura);
+                font-size: 1.05rem;
+                font-weight: 400;
+                margin: 0;
+                opacity: .85;
+                position: relative;
+            }
+
+            /* ──────────────────────────────────────
+               MAIN WRAPPER
+            ────────────────────────────────────── */
+            main {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 32px 16px 48px;
+            }
+
+            /* ──────────────────────────────────────
+               CARDS / SECTIONS
+            ────────────────────────────────────── */
+            .card-tierra {
+                background-color: var(--dorado-suave);
+                border: 2px solid var(--tierra-calida);
+                border-radius: var(--radio);
+                padding: 28px 32px;
+                margin-bottom: 24px;
+                box-shadow: var(--shadow);
+            }
+
+            /* ──────────────────────────────────────
+               TYPOGRAPHY
+            ────────────────────────────────────── */
+            h2 {
+                font-family: 'Playfair Display', serif;
+                font-weight: 700;
+                color: var(--acento-hover);
+                font-size: 1.7rem;
+                letter-spacing: -.5px;
+                margin-top: 0;
+                margin-bottom: 14px;
+                border-left: 4px solid var(--tierra-calida);
+                padding-left: 12px;
+            }
+            h3 {
+                font-weight: 700;
+                color: var(--acento);
+                font-size: 1.15rem;
+                margin-top: 0;
+                margin-bottom: 10px;
+            }
+            p { margin-bottom: .9rem; }
+
+            strong { color: var(--tierra-calida); }
+
+            /* ──────────────────────────────────────
+               BIENVENIDA FLEX
+            ────────────────────────────────────── */
+            .bienvenida-flex {
+                display: flex;
+                align-items: flex-start;
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+            .bienvenida-flex .texto { flex: 1 1 300px; }
+            .bienvenida-img {
+                width: 140px;
+                height: 140px;
+                border-radius: 50%;
+                border: 6px solid var(--tierra-calida);
+                object-fit: cover;
+                flex-shrink: 0;
+                box-shadow: 0 4px 16px rgba(0,0,0,.2);
+            }
+
+            /* ──────────────────────────────────────
+               LISTS
+            ────────────────────────────────────── */
+            ul, ol {
+                padding-left: 22px;
+            }
+            ul li, ol li {
+                margin-bottom: 6px;
+            }
+            ul li::marker { color: var(--tierra-calida); }
+            ol li::marker { color: var(--acento); font-weight: 700; }
+
+            /* ──────────────────────────────────────
+               TABLE
+            ────────────────────────────────────── */
+            .tabla-tarifas {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 16px;
+                font-size: .93rem;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: var(--shadow);
+            }
+            .tabla-tarifas thead tr {
+                background-color: var(--tierra-calida);
+                color: #fff;
+            }
+            .tabla-tarifas thead th {
+                padding: 12px 14px;
+                font-weight: 700;
+                letter-spacing: .4px;
+                border: none;
+            }
+            .tabla-tarifas tbody tr {
+                background-color: var(--dorado-claro);
+                border-bottom: 1px solid rgba(185,101,4,.25);
+                transition: background .15s;
+            }
+            .tabla-tarifas tbody tr:hover {
+                background-color: #f0d88a;
+            }
+            .tabla-tarifas tbody td {
+                padding: 11px 14px;
+                border: none;
+            }
+            .tabla-tarifas caption {
+                caption-side: top;
+                font-size: .8rem;
+                color: var(--tierra-oscura);
+                opacity: .7;
+                margin-bottom: 6px;
+                text-align: left;
+                font-style: italic;
+            }
+            .precio-cell { font-weight: 700; text-align: right; }
+
+            /* ──────────────────────────────────────
+               LINKS
+            ────────────────────────────────────── */
+            a.link-tierra {
+                color: var(--acento-hover);
+                font-weight: 700;
+                text-decoration: none;
+                border-bottom: 1.5px solid var(--acento);
+                transition: color .15s, border-color .15s;
+            }
+            a.link-tierra:hover {
+                color: var(--tierra-oscura);
+                border-color: var(--tierra-oscura);
+            }
+
+            /* ──────────────────────────────────────
+               IMAGE COLLAGE
+            ────────────────────────────────────── */
+            .img-collage {
+                display: block;
+                width: 100%;
+                max-width: 500px;
+                height: 300px;
+                object-fit: cover;
+                border-radius: 10px;
+                border: 3px solid var(--tierra-calida);
+                margin: 16px auto 0;
+                box-shadow: var(--shadow);
+            }
+
+            /* ──────────────────────────────────────
+               IMAGEN ALOJAMIENTO
+            ────────────────────────────────────── */
+            .img-alojamiento {
+                display: block;
+                width: 100%;
+                max-width: 480px;
+                height: 260px;
+                object-fit: cover;
+                border-radius: 10px;
+                border: 3px solid var(--tierra-calida);
+                margin: 14px 0 0;
+                box-shadow: var(--shadow);
+            }
+
+            /* ──────────────────────────────────────
+               CONTACT LINKS (redes sociales)
+            ────────────────────────────────────── */
+            .contact-links {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 14px;
+                margin-top: 20px;
+            }
+            .contact-links a {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                text-decoration: none;
+                color: var(--tierra-oscuro);
+                font-weight: 700;
+                font-size: 1rem;
+                transition: color .15s;
+            }
+            .contact-links a:hover { color: var(--tierra-calida); }
+            .contact-links img {
+                width: 22px;
+                height: 22px;
+                flex-shrink: 0;
+            }
+
+            /* ──────────────────────────────────────
+               FORMULARIO DE CONTACTO
+            ────────────────────────────────────── */
+            .formulario-contacto {
+                background-color: var(--dorado-claro);
+                border: 2px solid var(--tierra-calida);
+                border-radius: var(--radio);
+                padding: 28px 32px;
+                margin-top: 28px;
+                box-shadow: var(--shadow);
+            }
+
+            .formulario-contacto .form-label {
+                font-weight: 600;
+                color: var(--tierra-oscura);
+                font-size: .9rem;
+                margin-bottom: 4px;
+            }
+
+            .formulario-contacto .form-control,
+            .formulario-contacto .form-select {
+                background-color: var(--blanco-calido);
+                border: 1.5px solid var(--tierra-calida);
+                border-radius: 8px;
+                color: var(--texto-oscuro);
+                font-family: 'Montserrat', sans-serif;
+                font-size: .9rem;
+                transition: border-color .2s, box-shadow .2s;
+            }
+
+            .formulario-contacto .form-control:focus,
+            .formulario-contacto .form-select:focus {
+                border-color: var(--acento-hover);
+                box-shadow: 0 0 0 3px rgba(172,80,5,.18);
+                background-color: #fff;
+                outline: none;
+            }
+
+            .formulario-contacto .form-control.is-invalid {
+                border-color: #c0392b;
+                box-shadow: 0 0 0 3px rgba(192,57,43,.15);
+            }
+
+            .formulario-contacto .invalid-feedback {
+                font-size: .8rem;
+                color: #c0392b;
+                font-weight: 600;
+            }
+
+            .btn-enviar {
+                background-color: var(--tierra-calida);
+                color: #fff;
+                border: none;
+                border-radius: 10px;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 700;
+                font-size: .95rem;
+                letter-spacing: .5px;
+                padding: 11px 32px;
+                transition: background .2s, transform .15s, box-shadow .15s;
+                box-shadow: 0 3px 10px rgba(185,101,4,.3);
+            }
+            .btn-enviar:hover {
+                background-color: var(--acento-hover);
+                color: #fff;
+                transform: translateY(-1px);
+                box-shadow: 0 5px 14px rgba(172,80,5,.35);
+            }
+            .btn-enviar:active {
+                transform: translateY(0);
+            }
+
+            /* Mensaje de confirmación */
+            #mensajeConfirmacion {
+                display: none;
+                background-color: #d4edda;
+                border: 1.5px solid #28a745;
+                border-radius: 10px;
+                padding: 16px 20px;
+                margin-top: 18px;
+                color: #155724;
+                font-weight: 600;
+                font-size: .93rem;
+                text-align: center;
+            }
+
+            /* ──────────────────────────────────────
+               HR
+            ────────────────────────────────────── */
+            hr {
+                border: none;
+                border-top: 2px solid rgba(185,101,4,.3);
+                margin: 10px 0 16px;
+            }
+
+            /* ──────────────────────────────────────
+               FOOTER
+            ────────────────────────────────────── */
+            footer {
+                background-color: var(--tierra-oscura);
+                color: var(--dorado-claro);
+                padding: 36px 24px 24px;
+                border-top: 4px solid var(--tierra-calida);
+            }
+            .footer-grid {
+                max-width: 900px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 28px;
+                padding-bottom: 28px;
+                border-bottom: 1px solid rgba(235,202,124,.2);
+            }
+            footer h4 {
+                font-family: 'Playfair Display', serif;
+                color: var(--dorado-suave);
+                font-size: 1rem;
+                margin-bottom: 10px;
+                letter-spacing: .5px;
+            }
+            footer p, footer small, footer li {
+                font-size: .85rem;
+                color: rgba(245,228,168,.75);
+                line-height: 1.6;
+            }
+            footer ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            footer ul li { margin-bottom: 4px; }
+            footer ul li a {
+                color: rgba(245,228,168,.75);
+                text-decoration: none;
+                transition: color .15s;
+            }
+            footer ul li a:hover { color: var(--dorado-suave); }
+
+            .footer-bottom {
+                max-width: 900px;
+                margin: 18px auto 0;
+                text-align: center;
+                font-size: .78rem;
+                color: rgba(245,228,168,.45);
+                letter-spacing: .3px;
+            }
+
+            /* ──────────────────────────────────────
+               RESPONSIVE TWEAKS
+            ────────────────────────────────────── */
+            @media (max-width: 576px) {
+                .card-tierra { padding: 20px 18px; }
+                .formulario-contacto { padding: 20px 16px; }
+                .bienvenida-flex { flex-direction: column-reverse; align-items: center; }
+                .bienvenida-img { width: 110px; height: 110px; }
+                .img-alojamiento { height: 200px; }
+            }
+
+            /* ──────────────────────────────────────
+               BOTÓN VOLVER ARRIBA
+            ────────────────────────────────────── */
+            #btnVolverArriba {
+                position: fixed;
+                bottom: 28px;
+                right: 28px;
+                z-index: 9999;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background-color: var(--tierra-calida);
+                color: #fff;
+                border: none;
+                font-size: 1.4rem;
+                cursor: pointer;
+                box-shadow: 0 4px 16px rgba(74,44,2,.35);
+                display: none;
+                align-items: center;
+                justify-content: center;
+                transition: background .2s, transform .2s, opacity .3s;
+                opacity: 0;
+            }
+            #btnVolverArriba.visible {
+                display: flex;
+                opacity: 1;
+            }
+            #btnVolverArriba:hover {
+                background-color: var(--acento-hover);
+                transform: translateY(-3px);
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- ══════════════════════════════════════
+             NAV (Bootstrap navbar)
+        ══════════════════════════════════════ -->
+        <nav class="navbar navbar-expand-md">
+            <div class="container-fluid" style="max-width:900px; margin:0 auto;">
+                <a class="navbar-brand" href="#">🌵 Turismo Jáchal</a>
+                <button class="navbar-toggler" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#navMenu"
+                        aria-controls="navMenu" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navMenu">
+                    <ul class="navbar-nav ms-auto gap-1">
+                        <li class="nav-item"><a class="nav-link active" href="#bienvenida">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#circuitos">Circuitos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#tarifas">Tarifas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#alojamiento">Alojamiento</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ══════════════════════════════════════
+             HEADER
+        ══════════════════════════════════════ -->
+        <header>
+            <h1>Turismo Jáchal</h1>
+            <p>Descubrí la historia, los paisajes y las tradiciones de nuestra tierra.</p>
+        </header>
+
+        <!-- ══════════════════════════════════════
+             MAIN
+        ══════════════════════════════════════ -->
+        <main>
+
+            <!-- BIENVENIDA -->
+            <section id="bienvenida" class="card-tierra">
+                <div class="bienvenida-flex">
+                    <div class="texto">
+                        <h2>¡Bienvenidos a Jáchal!</h2>
+                        <p>Le damos la bienvenida al Portal Turístico Oficial de Jáchal. Este espacio ha sido diseñado para brindar a los visitantes toda la información necesaria para planificar su estadía y descubrir la riqueza histórica, cultural y natural que ofrece nuestra región en el norte sanjuanino.</p>
+                        <p>A través de este sitio, usted podrá conocer nuestras costumbres, historia y sumergirse en la auténtica <strong>cuna de la tradición</strong>.</p>
+                        <hr>
+                        <h3>Información esencial para el visitante</h3>
+                        <p>La localidad de San José de Jáchal se caracteriza por su clima árido y templado, ideal para el turismo de exploración durante todo el año. La región combina la serenidad de sus calles históricas con imponentes quiebres geográficos, convirtiéndola en un punto estratégico para el desarrollo del turismo cultural y de aventura en la provincia.</p>
+                    </div>
+                    <img src="Jáchal_entrada.jpeg" alt="Imagen de la entrada de Jáchal" class="bienvenida-img">
+                </div>
+            </section>
+
+            <!-- CIRCUITOS -->
+            <section id="circuitos" class="card-tierra">
+                <h2>Circuitos y Atractivos Turísticos</h2>
+
+                <article>
+                    <h3>Lugares Imperdibles</h3>
+                    <p>El Departamento cuenta con diversos puntos de interés patrimonial y paisajístico que destacan por su valor histórico. Entre los más importantes se encuentran:</p>
+                    <ul>
+                        <li>Templo de San José de Jáchal</li>
+                        <li>Cuesta de Huaco</li>
+                        <li>Molinos Harineros</li>
+                        <li>Dique Los Cauquenes</li>
+                    </ul>
+                </article>
+
+                <hr>
+
+                <article>
+                    <h3>Temporadas y Eventos de Mayor Afluencia Turística</h3>
+                    <p>Cronograma anual de los períodos con mayor registro de visitantes y ocupación hotelera en el departamento:</p>
+                    <ol>
+                        <li><strong>Enero (Temporada de Verano):</strong> Gran movimiento de turismo interno y delegaciones por los carnavales.</li>
+                        <li><strong>Marzo / Abril (Fiesta Patronal de San José - Semana Santa):</strong> Período de alta ocupación debido al turismo de fe, la clásica escenificación del Vía Crucis y los circuitos de aventura en los diques.</li>
+                        <li><strong>Julio (Vacaciones de Invierno):</strong> Arribo de turistas nacionales atraídos por el clima templado ideal para el trekking, las peñas folclóricas y la gastronomía local.</li>
+                        <li><strong>Noviembre (Fiesta Nacional de la Tradición):</strong> El pico turístico más alto del año. El Departamento recibe miles de visitantes del país y del exterior para las noches centrales en el Anfiteatro Buenaventura Luna.</li>
+                    </ol>
+                    <img src="Collage.jpeg" alt="Imágenes de los momentos de mayor turismo en Jáchal" class="img-collage">
+                </article>
+            </section>
+
+            <!-- TARIFAS -->
+            <section id="tarifas" class="card-tierra">
+                <h2>Tarifas de Excursiones y Actividades</h2>
+                <p>En esta sección podrá conocer los precios de las excursiones y circuitos guiados, actividades y entrada a lugares más conocidos y disponibles en el momento.</p>
+
+                <div class="table-responsive">
+                    <table class="tabla-tarifas">
+                        <caption>Precios orientativos. Consultá disponibilidad con el organizador.</caption>
+                        <thead>
+                            <tr>
+                                <th>Circuito o Lugar Turístico</th>
+                                <th style="text-align:center;">Duración Estimada</th>
+                                <th>Organizado por</th>
+                                <th style="text-align:right;">Precio por Persona</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Visita a "Camping Agua Negra"</td>
+                                <td style="text-align:center;">—</td>
+                                <td>Independiente</td>
+                                <td class="precio-cell">$4.000 ARS</td>
+                            </tr>
+                            <tr>
+                                <td>Trekking Valle Encantado – Mogna</td>
+                                <td style="text-align:center;">5 Horas</td>
+                                <td>
+                                    <a href="https://www.instagram.com/clubandinojachal?igsh=MWk4OGMyMXZvZWYxdg==" target="_blank" class="link-tierra">Club Andino Jáchal</a>
+                                </td>
+                                <td class="precio-cell">$30.000 ARS</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ══════════════════════════════════════
+                 ALOJAMIENTO  ← NUEVA SECCIÓN
+            ══════════════════════════════════════ -->
+            <section id="alojamiento" class="card-tierra">
+                <h2>Alojamiento</h2>
+                <p>Jáchal te ofrece diferentes opciones para que disfrutes tu estadía, ya sea que busques la comodidad del centro o la tranquilidad de la naturaleza.</p>
+
+                <h3>Categorías de Alojamientos</h3>
+
+                <hr>
+
+                <article>
+                    <h3>Hoteles <span style="font-size:.95rem; font-weight:400; color:var(--texto-oscuro);">(Para los que buscan comodidad y cercanía)</span></h3>
+
+                    <p><strong>Hotel San Martín:</strong> Ubicado en Calle Echegaray 367. Es ideal si querés estar a un paso de la plaza principal, los comercios y el histórico Templo de San José de Jáchal. Incluye servicios básicos y Wi-Fi.</p>
+
+                    <img src="hotel.jpg" alt="Fotografía del Hotel San Martín - Jáchal" class="img-alojamiento">
+                </article>
+
+                <hr>
+
+                <article>
+                    <h3>Apart Hoteles y Departamentos <span style="font-size:.95rem; font-weight:400; color:var(--texto-oscuro);">(Para familias o estadías largas)</span></h3>
+
+                    <p><strong>Apart Hualta Picum:</strong> Ubicado en Calle Sarmiento 749 Sur. Ofrece departamentos totalmente equipados con cocina, cochera y Wi-Fi. Es la opción más cómoda si viajás en grupo o preferís autogestionarte.</p>
+
+                    <img src="Hualtapicum.jpg" alt="Fotografía del Apart Hualta Picum - Jáchal" class="img-alojamiento">
+                </article>
+            </section>
+
+            <!-- ENLACE EXTERNO -->
+            <section style="text-align:center; margin: 10px 0 24px;">
+                <p>Para conocer más sobre el Departamento y la provincia de San Juan, podés visitar el
+                    <a href="https://sanjuan.tur.ar/destinos/jachal" target="_blank" class="link-tierra">Sitio Oficial de Turismo de San Juan</a>.
+                </p>
+            </section>
+
+            <!-- CONTACTO -->
+            <section id="contacto" class="card-tierra">
+                <h2>Contacto y Consultas</h2>
+                <p>¿Tiene alguna duda sobre los circuitos o necesita orientación e información adicional? Complete y envíe el siguiente formulario de contacto y recibirá una respuesta a la brevedad, ya sea por correo o SMS/Whatsapp, para que su estadía en nuestro Departamento sea increíble.</p>
+
+                <!-- ══════════════════════════════
+                     FORMULARIO DE CONTACTO
+                ══════════════════════════════ -->
+                <div class="formulario-contacto">
+                    <h3>📬 FORMULARIO DE CONTACTO</h3>
+                    <p style="font-size:.9rem; color:var(--tierra-oscura); opacity:.8; margin-bottom:18px;">
+                        Completá el formulario y te respondemos a la brevedad.
+                        Los campos marcados con <span style="color:#c0392b;">***</span> son de carácter obligatorio.
+                    </p>
+
+                    <form
+                        id="formContacto"
+                        action="https://formsubmit.co/descubrijachal@gmail.com"
+                        method="POST"
+                        novalidate>
+
+                        <!-- Campos ocultos FormSubmit -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="http://localhost/formulario/">
+                        <input type="hidden" name="_subject" value="Nueva consulta - Turismo Jáchal">
+
+                        <!-- Fila 1: Nombre y Apellido -->
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label for="nombre" class="form-label">Nombre <span style="color:#c0392b;">***</span></label>
+                                <input
+                                    type="text"
+                                    id="nombre"
+                                    name="nombre"
+                                    class="form-control"
+                                    placeholder="Ej: Juan"
+                                    required
+                                    minlength="2">
+                                <div class="invalid-feedback">Por favor ingresá tu nombre (mínimo 2 caracteres).</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="apellido" class="form-label">Apellido <span style="color:#c0392b;">***</span></label>
+                                <input
+                                    type="text"
+                                    id="apellido"
+                                    name="apellido"
+                                    class="form-control"
+                                    placeholder="Ej: González"
+                                    required
+                                    minlength="2">
+                                <div class="invalid-feedback">Por favor ingresá tu apellido (mínimo 2 caracteres).</div>
+                            </div>
+                        </div>
+
+                        <!-- Fila 2: Email y Teléfono -->
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Correo electrónico <span style="color:#c0392b;">***</span></label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    class="form-control"
+                                    placeholder="Ej: juangonzalez@gmail.com"
+                                    required>
+                                <div class="invalid-feedback">¡INCORRECTO! Por favor ingresá un correo electrónico válido.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="telefono" class="form-label">Teléfono / WhatsApp</label>
+                                <input
+                                    type="number"
+                                    id="telefono"
+                                    name="telefono"
+                                    class="form-control"
+                                    placeholder="Ej: +54 XXX XXX XXXX">
+                                <div class="invalid-feedback">Ingresá solo números.</div>
+                            </div>
+                        </div>
+
+                        <!-- Fila 3: Tipo de consulta y Fecha de visita -->
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label for="tipoConsulta" class="form-label">Tipo de consulta <span style="color:#c0392b;">***</span></label>
+                                <select id="tipoConsulta" name="tipo_consulta" class="form-select" required>
+                                    <option value="" disabled selected>Seleccioná una opción</option>
+                                    <option value="Circuitos y excursiones">Circuitos y excursiones</option>
+                                    <option value="Tarifas y precios">Tarifas y precios</option>
+                                    <option value="Alojamiento">Alojamiento</option>
+                                    <option value="Eventos y festividades">Eventos y festividades</option>
+                                    <option value="Otra consulta">Otra consulta</option>
+                                </select>
+                                <div class="invalid-feedback">Por favor seleccioná el tipo de consulta.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="fechaVisita" class="form-label">Fecha de visita estimada</label>
+                                <input
+                                    type="date"
+                                    id="fechaVisita"
+                                    name="fecha_visita"
+                                    class="form-control">
+                            </div>
+                        </div>
+
+                        <!-- Fila 4: Mensaje -->
+                        <div class="mb-4">
+                            <label for="mensaje" class="form-label">Mensaje <span style="color:#c0392b;">***</span></label>
+                            <textarea
+                                id="mensaje"
+                                name="mensaje"
+                                class="form-control"
+                                rows="5"
+                                placeholder="Escribí tu consulta aquí..."
+                                required
+                                minlength="10"></textarea>
+                            <div class="invalid-feedback">El mensaje debe tener al menos 10 caracteres.</div>
+                        </div>
+
+                        <!-- Botón de envío -->
+                        <div class="text-center">
+                            <button type="submit" class="btn-enviar">
+                                ✉️ Enviar consulta
+                            </button>
+                        </div>
+
+                    </form>
+
+                    <!-- Mensaje de confirmación -->
+                    <div id="mensajeConfirmacion" role="alert">
+                        ✅ ¡Gracias por tu consulta! Te responderemos a la brevedad en el correo indicado, o en su defecto, a tu Whatsapp.
+                    </div>
+
+                </div>
+                <!-- fin formulario-contacto -->
+
+                <br>
+                <br>
+                <br>
+
+                <h3>Nuestras redes sociales</h3>
+
+                <div class="contact-links">
+                    <a href="https://www.instagram.com/turismo_jachal?igsh=MWVmNmFvYzltMHNiOQ==" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Logo Instagram">
+                        <span>@turismo_jachal</span>
+                    </a>
+                    <a href="https://wa.me/5492646253389" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="Logo WhatsApp">
+                        <span>WhatsApp Consultas</span>
+                    </a>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ══════════════════════════════════════
+             FOOTER
+        ══════════════════════════════════════ -->
+        <footer>
+            <div class="footer-grid">
+
+                <div>
+                    <h4>🌵 Turismo Jáchal</h4>
+                    <p>Portal Turístico Oficial del Departamento Jáchal, provincia de San Juan, Argentina.</p>
+                    <p><small><em>Cuna de la Tradición</em></small></p>
+                </div>
+
+                <div>
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="#bienvenida">Inicio</a></li>
+                        <li><a href="#circuitos">Circuitos y Atractivos</a></li>
+                        <li><a href="#tarifas">Tarifas</a></li>
+                        <li><a href="#alojamiento">Alojamiento</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li>📷 <a href="https://www.instagram.com/turismo_jachal" target="_blank">@turismo_jachal</a></li>
+                        <li>💬 <a href="https://wa.me/5492646253389" target="_blank">WhatsApp</a></li>
+                        <li>✉️ <a href="mailto:descubrijachal@gmail.com">descubrijachal@gmail.com</a></li>
+                        <li>🔗 <a href="https://sanjuan.tur.ar/destinos/jachal" target="_blank">sanjuan.tur.ar</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <small>
+                    &copy; 2026 Turismo Jáchal &nbsp;·&nbsp;
+                    Trabajo práctico – Julieta Sol López González – Adaptación del Ambiente de Trabajo &nbsp;·&nbsp;
+                    7° 2° &nbsp;·&nbsp; Prof. Javier Aballay
+                </small>
+            </div>
+        </footer>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Script externo (script.js) -->
+        <script src="script.js"></script>
+
+        <!-- Botón volver arriba -->
+        <button id="btnVolverArriba" title="Volver al inicio" aria-label="Volver al inicio">▲</button>
+        <script>
+            (function () {
+                const btn = document.getElementById("btnVolverArriba");
+                window.addEventListener("scroll", function () {
+                    if (window.scrollY > 300) {
+                        btn.classList.add("visible");
+                    } else {
+                        btn.classList.remove("visible");
+                    }
+                });
+                btn.addEventListener("click", function () {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                });
+            })();
+        </script>
+
+    </body>
+</html>
